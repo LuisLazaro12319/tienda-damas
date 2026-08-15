@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+/* Paleta blanco + celeste (template de tienda). */
+:root {
+  --background: #ffffff;
+  --superficie: #f2f8fd;
+  --borde: #dbe8f4;
+  --foreground: #12283d;
+  --tenue: #5f7183;
+  --acento: #2ba6e8;
+  --acento-fuerte: #1789cf;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-superficie: var(--superficie);
+  --color-borde: var(--borde);
+  --color-foreground: var(--foreground);
+  --color-tenue: var(--tenue);
+  --color-acento: var(--acento);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tema claro fijo; no seguimos el tema del sistema. */
+html {
+  color-scheme: light;
+}
+
+.titulo-display {
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
