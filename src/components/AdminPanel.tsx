@@ -5,7 +5,7 @@ import Link from "next/link";
 import { productos, CATEGORIAS } from "@/data/productos";
 import { precio } from "@/lib/formato";
 import { SelectorPaleta } from "@/components/SelectorPaleta";
-import { MARCA, MINIMO_MAYORISTA, BASE_PATH } from "@/lib/config";
+import { MARCA, MINIMO_MAYORISTA, BASE_PATH, FONDOS } from "@/lib/config";
 
 /* WhatsApp de contacto para activar el panel (número del desarrollador). */
 const WA_CONTACTO = "5491156199449";
@@ -165,6 +165,20 @@ function BloqueFotosColores() {
           </p>
         </div>
       )}
+    </div>
+  );
+}
+
+function PreviewFondo({ archivo, nota }: { archivo: string; nota: string }) {
+  return (
+    <div>
+      <div
+        className="relative mb-1.5 h-28 overflow-hidden rounded-lg border border-borde bg-cover bg-center"
+        style={{ backgroundImage: `url(${BASE_PATH}/${archivo})` }}
+      >
+        <span className="absolute bottom-2 right-2 cursor-not-allowed rounded-lg bg-background/90 px-3 py-1.5 text-xs font-semibold text-acento">🖼️ Cambiar imagen</span>
+      </div>
+      <p className="text-[11px] text-tenue">{nota}</p>
     </div>
   );
 }
@@ -385,6 +399,22 @@ export function AdminPanel() {
                   <Campo label="Etiqueta de arriba" valor="Temporada Invierno · Venta por mayor" />
                   <Campo label="Título" valor="Ropa de damas y niñas directo de fábrica" />
                   <Campo label="Bajada" area valor="Somos fabricantes. Elegí las prendas, armá tu pedido por mayor y lo cerramos por WhatsApp, con envíos a todas las provincias." />
+                </div>
+                <Bloqueado />
+              </div>
+
+              <div className="rounded-xl border border-borde bg-background p-6">
+                <h2 className="mb-1 text-base font-semibold">Fondos de secciones</h2>
+                <p className="mb-4 text-sm text-tenue">Imágenes de fondo detrás de las prendas. Se ven suaves, con un velo encima para que las fotos resalten.</p>
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div>
+                    <label className="mb-1.5 block text-xs font-medium text-tenue">Detrás de “Destacados” (inicio)</label>
+                    <PreviewFondo archivo={FONDOS.destacados} nota="Detrás de las prendas destacadas del inicio." />
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-xs font-medium text-tenue">Detrás de “Todos los productos”</label>
+                    <PreviewFondo archivo={FONDOS.productos} nota="Detrás del catálogo completo." />
+                  </div>
                 </div>
                 <Bloqueado />
               </div>

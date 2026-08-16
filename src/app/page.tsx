@@ -5,7 +5,8 @@ import { ProductoCard } from "@/components/ProductoCard";
 import { ModoToggle } from "@/components/ModoToggle";
 import { ComoComprar } from "@/components/ComoComprar";
 import { Separador } from "@/components/Separador";
-import { MARCA, MINIMO_MAYORISTA, BASE_PATH } from "@/lib/config";
+import { SeccionConFondo } from "@/components/SeccionConFondo";
+import { MARCA, MINIMO_MAYORISTA, BASE_PATH, FONDOS } from "@/lib/config";
 
 const BENEFICIOS = [
   {
@@ -69,23 +70,25 @@ export default function Home() {
 
       <Separador />
 
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <div className="mb-8 flex items-end justify-between gap-4">
-          <h2 className="titulo-display text-2xl sm:text-3xl">Destacados</h2>
-          <Link
-            href="/productos"
-            className="shrink-0 text-sm text-tenue transition-colors hover:text-foreground"
-          >
-            Ver todo →
-          </Link>
-        </div>
+      <SeccionConFondo fondo={FONDOS.destacados} className="px-4 py-16 sm:px-6">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-8 flex items-end justify-between gap-4">
+            <h2 className="titulo-display text-2xl sm:text-3xl">Destacados</h2>
+            <Link
+              href="/productos"
+              className="shrink-0 text-sm text-tenue transition-colors hover:text-foreground"
+            >
+              Ver todo →
+            </Link>
+          </div>
 
-        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3">
-          {destacados.map((producto) => (
-            <ProductoCard key={producto.slug} producto={producto} />
-          ))}
+          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3">
+            {destacados.map((producto) => (
+              <ProductoCard key={producto.slug} producto={producto} />
+            ))}
+          </div>
         </div>
-      </section>
+      </SeccionConFondo>
 
       <Separador />
 

@@ -35,6 +35,15 @@ export const MARCA = {
 export const MINIMO_MAYORISTA = 10;
 
 /**
+ * Imágenes de fondo (en /public) detrás de algunas secciones. Vacío = sin
+ * fondo. La dueña las cambia desde el panel > Inicio de la web.
+ */
+export const FONDOS = {
+  destacados: "fondo-seccion.jpg",
+  productos: "fondo-seccion.jpg",
+} as const;
+
+/**
  * Subcarpeta desde la que se sirve el sitio ("/tapias-web" en GitHub Pages,
  * vacío en local y con dominio propio). La define el workflow de deploy.
  *
