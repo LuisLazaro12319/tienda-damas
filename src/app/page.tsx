@@ -58,9 +58,9 @@ export default function Home() {
       <Separador />
 
       <section>
-        <div className="mx-auto grid max-w-6xl gap-px bg-borde sm:grid-cols-3">
+        <div className="mx-auto grid max-w-6xl gap-6 px-4 py-8 sm:grid-cols-3 sm:px-6">
           {BENEFICIOS.map((b) => (
-            <div key={b.titulo} className="bg-background px-4 py-7 sm:px-6">
+            <div key={b.titulo}>
               <h3 className="text-sm font-semibold">{b.titulo}</h3>
               <p className="mt-1.5 text-sm leading-relaxed text-tenue">{b.texto}</p>
             </div>
