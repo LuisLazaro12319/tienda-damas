@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
-/* Paleta blanco + celeste (modo claro, por defecto). */
+/* Paleta blanco + rosa (modo claro, por defecto). */
 :root {
   --background: #ffffff;
-  --superficie: #f2f8fd;
-  --borde: #dbe8f4;
-  --foreground: #12283d;
-  --tenue: #5f7183;
-  --acento: #2ba6e8;
-  --acento-fuerte: #1789cf;
+  --superficie: #fdf3f8;
+  --borde: #f4dbe8;
+  --foreground: #2b1d26;
+  --tenue: #8a7480;
+  --acento: #dd5498;
+  --acento-fuerte: #c33f7e;
 }
 
-/* Modo oscuro: negro azulado + celeste brillante. */
+/* Modo oscuro: negro rosado + rosa brillante. */
 :root[data-theme="dark"] {
-  --background: #0a0e14;
-  --superficie: #141b25;
-  --borde: #26313f;
-  --foreground: #eef4fa;
-  --tenue: #8ea3b6;
-  --acento: #3cb6f0;
-  --acento-fuerte: #62c6f5;
+  --background: #120a10;
+  --superficie: #1e131a;
+  --borde: #34222d;
+  --foreground: #fbeef5;
+  --tenue: #bd9cac;
+  --acento: #f07bb0;
+  --acento-fuerte: #f8a5cd;
   color-scheme: dark;
 }
 

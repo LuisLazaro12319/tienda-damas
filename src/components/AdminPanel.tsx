@@ -414,8 +414,8 @@ export function AdminPanel() {
                 <p className="mb-4 text-sm text-tenue">El color de los botones, precios y detalles de toda la tienda.</p>
                 <div className="flex flex-wrap gap-3">
                   {[
+                    { c: "#dd5498", n: "Rosa" },
                     { c: "#2ba6e8", n: "Celeste" },
-                    { c: "#e5679a", n: "Rosa" },
                     { c: "#8b5cf6", n: "Violeta" },
                     { c: "#22b07d", n: "Verde" },
                     { c: "#f5b301", n: "Dorado" },
