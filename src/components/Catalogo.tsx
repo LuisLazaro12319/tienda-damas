@@ -46,7 +46,7 @@ export function Catalogo({ productos }: { productos: Producto[] }) {
         <ModoToggle />
       </div>
 
-      <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <div className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3">
         {visibles.map((producto) => (
           <ProductoCard key={producto.slug} producto={producto} />
         ))}
