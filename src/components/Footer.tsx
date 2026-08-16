@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Separador } from "@/components/Separador";
 import { MARCA, TEL_MAYORISTA_VISIBLE, WHATSAPP } from "@/lib/config";
 
 /**
@@ -45,7 +46,8 @@ function IconoWhatsApp() {
 
 export function Footer() {
   return (
-    <footer className="mt-20 border-t border-borde">
+    <footer className="mt-20">
+      <Separador />
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <span className="titulo-display text-xl font-extrabold italic tracking-tighter">

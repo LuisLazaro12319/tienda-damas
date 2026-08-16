@@ -18,7 +18,7 @@ export function Header() {
   const [abierto, setAbierto] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-borde bg-background/85 backdrop-blur-md">
+    <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-4 sm:px-6">
         <Link href="/" className="flex shrink-0 items-center gap-2.5">
           <span className="text-lg font-extrabold italic tracking-tighter sm:text-xl">
@@ -97,6 +97,22 @@ export function Header() {
           </div>
         </div>
       )}
+
+      {/* Línea de luz al pie del header (toma el color de la paleta) */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] rounded-full"
+        style={{ background: "linear-gradient(to right, transparent, var(--acento), transparent)" }}
+      />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-[-4px] h-[8px]"
+        style={{
+          background: "linear-gradient(to right, transparent, var(--acento), transparent)",
+          filter: "blur(4px)",
+          opacity: 0.45,
+        }}
+      />
     </header>
   );
 }
