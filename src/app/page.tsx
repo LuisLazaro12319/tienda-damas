@@ -71,9 +71,7 @@ export default function Home() {
 
       <Separador />
 
-      <section className="py-10 sm:py-12">
-        <PromosCarrusel />
-      </section>
+      <PromosCarrusel />
 
       <Separador />
 

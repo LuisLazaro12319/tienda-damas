@@ -390,7 +390,7 @@ export function AdminPanel() {
                 <h2 className="text-base font-semibold">Promos / Ofertas</h2>
                 <span className="cursor-not-allowed rounded-lg bg-acento/90 px-3 py-1.5 text-xs font-semibold text-white">+ Agregar promo</span>
               </div>
-              <p className="mb-4 text-sm text-tenue">Banners que se muestran arriba de Destacados. Si cargás más de uno, <strong className="text-foreground">rotan solos</strong>. Al tocar una promo, a la clienta se le abre <strong className="text-foreground">WhatsApp</strong> pidiendo info de esa oferta.</p>
+              <p className="mb-4 text-sm text-tenue">Banners que se muestran arriba de Destacados. Si cargás más de uno, <strong className="text-foreground">rotan solos</strong>. Al tocar una promo, la clienta va directo a la <strong className="text-foreground">categoría Ofertas</strong> del catálogo y elige qué comprar.</p>
               <div className="space-y-3">
                 {PROMOS.map((promo, i) => (
                   <div key={promo.imagen} className="flex flex-col gap-3 rounded-lg border border-borde bg-superficie p-3 sm:flex-row sm:items-center">
@@ -400,7 +400,7 @@ export function AdminPanel() {
                     />
                     <div className="min-w-0 flex-1">
                       <p className="text-sm font-medium">{promo.titulo}</p>
-                      <p className="text-xs text-tenue">Orden {i + 1} · al tocarla abre WhatsApp</p>
+                      <p className="text-xs text-tenue">Orden {i + 1} · lleva a Ofertas</p>
                     </div>
                     <Acciones />
                   </div>

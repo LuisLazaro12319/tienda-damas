@@ -95,6 +95,7 @@ export const productos: Producto[] = [
     precioMayorista: 13000,
     talles: TALLES_DAMA,
     colores: [NEGRO, GRIS, LILA],
+    oferta: true,
   },
   {
     slug: "remera-manga-corta-dama",
@@ -107,6 +108,7 @@ export const productos: Producto[] = [
     precioMayorista: 9500,
     talles: TALLES_DAMA,
     colores: [OFFWHITE, NEGRO, ROSA, CELESTE],
+    oferta: true,
   },
   {
     slug: "blusa-escote-v",
@@ -119,6 +121,7 @@ export const productos: Producto[] = [
     precioMayorista: 14500,
     talles: TALLES_DAMA,
     colores: [NEGRO, CREMA, LILA],
+    oferta: true,
   },
   {
     slug: "cardigan-tejido-dama",

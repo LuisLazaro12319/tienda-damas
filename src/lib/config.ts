@@ -48,9 +48,9 @@ export const FONDOS = {
  * panel. Si hay más de uno, rotan solos; al tocar uno se abre WhatsApp pidiendo
  * info de esa promo. Vacío = no se muestra la sección.
  */
-export const PROMOS: { imagen: string; titulo: string }[] = [
-  { imagen: "promos/promo-1.jpg", titulo: "Ofertas" },
-  { imagen: "promos/promo-2.jpg", titulo: "Nuevos ingresos" },
+export const PROMOS: { imagen: string; titulo: string; link: string }[] = [
+  { imagen: "promos/promo-1.jpg", titulo: "Ofertas", link: "/productos?ver=ofertas" },
+  { imagen: "promos/promo-2.jpg", titulo: "Nuevos ingresos", link: "/productos" },
 ];
 
 /**

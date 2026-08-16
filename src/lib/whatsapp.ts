@@ -49,14 +49,6 @@ export function linkPedido(
   return `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
 }
 
-/** Link para pedir info de una promo/oferta, desde el carrusel del inicio. */
-export function linkPromo(titulo?: string): string {
-  const mensaje =
-    `¡Hola ${MARCA.nombre}! Quiero información de la promo` +
-    (titulo ? ` *${titulo}* 🔥` : ".");
-  return `https://wa.me/${WHATSAPP.minorista}?text=${encodeURIComponent(mensaje)}`;
-}
-
 /** Link para consultar por un producto puntual, desde la ficha. */
 export function linkConsulta(producto: Producto, modo: Modo): string {
   const numero = modo === "mayorista" ? WHATSAPP.mayorista : WHATSAPP.minorista;
