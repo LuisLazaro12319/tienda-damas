@@ -28,7 +28,7 @@ export default function Home() {
       <section className="border-b border-borde">
         <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
           <p className="mb-4 text-xs uppercase tracking-[0.25em] text-acento">
-            Temporada 25 · Venta por mayor
+            Temporada Invierno · Venta por mayor
           </p>
           <h1 className="titulo-display max-w-3xl text-4xl leading-[1.05] sm:text-6xl">
             Ropa de damas y niñas

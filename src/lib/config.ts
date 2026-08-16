@@ -18,7 +18,7 @@ export const WHATSAPP = {
 export const TEL_MAYORISTA_VISIBLE = "+54 9 11 2355-5043";
 
 export const MARCA = {
-  nombre: "Tienda",
+  nombre: "Tienda de Ropa",
   tagline: "Ropa de damas y niñas · Venta por mayor",
   descripcion:
     "Fabricantes de ropa de damas y niñas. Armá tu pedido por mayor y lo coordinamos por WhatsApp, con envíos a todas las provincias de Argentina.",
