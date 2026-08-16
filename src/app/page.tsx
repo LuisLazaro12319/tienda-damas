@@ -1,9 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 import { productos } from "@/data/productos";
 import { ProductoCard } from "@/components/ProductoCard";
 import { ModoToggle } from "@/components/ModoToggle";
 import { ComoComprar } from "@/components/ComoComprar";
-import { MARCA, MINIMO_MAYORISTA } from "@/lib/config";
+import { MARCA, MINIMO_MAYORISTA, BASE_PATH } from "@/lib/config";
 
 const BENEFICIOS = [
   {
@@ -25,8 +26,18 @@ export default function Home() {
 
   return (
     <>
-      <section className="border-b border-borde">
-        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+      <section className="relative overflow-hidden border-b border-borde">
+        <Image
+          src={`${BASE_PATH}/fondo-inicio.jpg`}
+          alt=""
+          aria-hidden
+          fill
+          priority
+          className="object-cover object-right"
+        />
+        {/* Degradé para que el texto se lea sobre el fondo, en claro y oscuro */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/25 sm:to-transparent" />
+        <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
           <p className="mb-4 text-xs uppercase tracking-[0.25em] text-acento">
             Temporada Invierno · Venta por mayor
           </p>

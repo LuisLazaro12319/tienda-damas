@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { productos, CATEGORIAS } from "@/data/productos";
 import { precio } from "@/lib/formato";
-import { MARCA } from "@/lib/config";
+import { MARCA, MINIMO_MAYORISTA, BASE_PATH } from "@/lib/config";
 
 /* WhatsApp de contacto para activar el panel (número del desarrollador). */
 const WA_CONTACTO = "5491156199449";
@@ -36,10 +36,21 @@ function Campo({ label, valor, placeholder, area = false }: { label: string; val
   );
 }
 
-/* Bloque de colores INTERACTIVO (demo real de cómo el dueño arma la paleta). */
-function BloqueColores() {
-  const [colores, setColores] = useState([
-    { hex: "#e5a7bd", n: "Rosa" },
+function IconoFoto() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <circle cx="9" cy="10" r="1.6" />
+      <path d="m3 17 5-4 4 3 3-2 6 5" />
+    </svg>
+  );
+}
+
+/* Bloque UNIFICADO fotos + colores (demo real del formulario de carga).
+   Color principal con varias fotos + otros colores con una foto cada uno. */
+function BloqueFotosColores() {
+  const PRINCIPAL = { hex: "#e5a7bd", n: "Rosa" };
+  const [extras, setExtras] = useState([
     { hex: "#a9cfe8", n: "Celeste" },
     { hex: "#1c1c1c", n: "Negro" },
   ]);
@@ -48,90 +59,111 @@ function BloqueColores() {
   const [nombre, setNombre] = useState("");
 
   function agregar() {
-    const n = nombre.trim() || "Color";
-    setColores((prev) => [...prev, { hex, n }]);
+    setExtras((prev) => [...prev, { hex, n: nombre.trim() || "Color" }]);
     setNombre("");
     setHex("#c4b0dd");
     setAbierto(false);
   }
 
-  return (
-    <div className="sm:col-span-2">
-      <label className="mb-1.5 block text-xs font-medium text-tenue">Colores de la prenda</label>
+  function Pastilla({ hex, n }: { hex: string; n: string }) {
+    return (
+      <span className="flex items-center gap-1.5 rounded-full border border-borde bg-superficie py-1 pl-1 pr-2.5 text-xs">
+        <span className="h-5 w-5 rounded-full border border-borde" style={{ backgroundColor: hex }} />
+        {n}
+      </span>
+    );
+  }
 
-      {/* Círculos ya cargados */}
-      <div className="flex flex-wrap items-center gap-2.5">
-        {colores.map((c, i) => (
-          <span key={`${c.n}-${i}`} className="flex items-center gap-1.5 rounded-full border border-borde bg-superficie py-1 pl-1 pr-2.5 text-xs">
-            <span className="h-5 w-5 rounded-full border border-borde" style={{ backgroundColor: c.hex }} />
-            {c.n}
-            <button
-              type="button"
-              onClick={() => setColores((prev) => prev.filter((_, j) => j !== i))}
-              className="text-tenue transition-colors hover:text-[#c0392b]"
-              aria-label={`Quitar ${c.n}`}
-            >
-              ×
-            </button>
-          </span>
-        ))}
-        <button
-          type="button"
-          onClick={() => setAbierto((v) => !v)}
-          className="flex items-center gap-1.5 rounded-full border border-dashed border-acento px-2.5 py-1.5 text-xs font-medium text-acento transition-colors hover:bg-acento/10"
-        >
-          <span className="flex h-5 w-5 items-center justify-center rounded-full border border-dashed border-acento">+</span>
-          Agregar color
-        </button>
+  return (
+    <div className="rounded-xl border border-borde bg-superficie/40 p-4 sm:col-span-2">
+      <h3 className="text-sm font-semibold">Fotos y colores</h3>
+      <p className="mt-0.5 text-xs text-tenue">
+        Cargá el <strong className="text-foreground">color principal</strong> con sus fotos y después sumá los otros colores. Todo va dentro de <strong className="text-foreground">este mismo producto</strong>.
+      </p>
+
+      {/* COLOR PRINCIPAL */}
+      <div className="mt-4 rounded-lg border border-acento/40 bg-background p-3.5">
+        <div className="mb-3 flex flex-wrap items-center gap-2">
+          <span className="rounded-full bg-acento/15 px-2 py-0.5 text-[11px] font-semibold text-acento">Color principal</span>
+          <span className="text-[11px] text-tenue">es el que se ve al abrir la prenda</span>
+        </div>
+        <div className="flex flex-wrap items-center gap-3">
+          <Pastilla hex={PRINCIPAL.hex} n={PRINCIPAL.n} />
+          <div className="flex items-center gap-2">
+            {[0, 1, 2].map((i) => (
+              <span key={i} className="flex h-14 w-12 items-center justify-center rounded-lg border border-dashed border-borde bg-superficie text-tenue">
+                <IconoFoto />
+              </span>
+            ))}
+            <span className="text-[11px] text-tenue">varias fotos<br />(frente, espalda…)</span>
+          </div>
+        </div>
       </div>
 
-      {/* Selector que aparece al tocar "Agregar color" */}
+      {/* OTROS COLORES */}
+      {extras.length > 0 && (
+        <div className="mt-3 space-y-2">
+          {extras.map((c, i) => (
+            <div key={`${c.n}-${i}`} className="flex flex-wrap items-center gap-3 rounded-lg border border-borde bg-background p-2.5">
+              <Pastilla hex={c.hex} n={c.n} />
+              <span className="flex h-12 w-10 items-center justify-center rounded-lg border border-dashed border-borde bg-superficie text-tenue">
+                <IconoFoto />
+              </span>
+              <span className="text-[11px] text-tenue">su foto</span>
+              <button
+                type="button"
+                onClick={() => setExtras((prev) => prev.filter((_, j) => j !== i))}
+                className="ml-auto text-tenue transition-colors hover:text-[#c0392b]"
+                aria-label={`Quitar ${c.n}`}
+              >
+                ×
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* AGREGAR OTRO COLOR */}
+      <button
+        type="button"
+        onClick={() => setAbierto((v) => !v)}
+        className="mt-3 flex items-center gap-1.5 rounded-full border border-dashed border-acento px-3 py-1.5 text-xs font-medium text-acento transition-colors hover:bg-acento/10"
+      >
+        <span className="flex h-5 w-5 items-center justify-center rounded-full border border-dashed border-acento">+</span>
+        Agregar otro color
+      </button>
+
       {abierto && (
-        <div className="mt-3 rounded-xl border border-acento/40 bg-superficie p-4">
+        <div className="mt-3 rounded-xl border border-acento/40 bg-background p-4">
           <p className="mb-3 text-xs font-semibold text-foreground">Nuevo color</p>
           <div className="flex flex-wrap items-end gap-4">
             <div>
               <label className="mb-1 block text-[11px] text-tenue">Tono</label>
-              <input
-                type="color"
-                value={hex}
-                onChange={(e) => setHex(e.target.value)}
-                className="h-10 w-14 cursor-pointer rounded-lg border border-borde bg-background p-1"
-              />
+              <input type="color" value={hex} onChange={(e) => setHex(e.target.value)}
+                className="h-10 w-14 cursor-pointer rounded-lg border border-borde bg-background p-1" />
             </div>
-            <div className="min-w-[140px] flex-1">
+            <div className="min-w-[130px] flex-1">
               <label className="mb-1 block text-[11px] text-tenue">Nombre</label>
-              <input
-                value={nombre}
-                onChange={(e) => setNombre(e.target.value)}
-                placeholder="Ej: Lila"
-                className="w-full rounded-lg border border-borde bg-background px-3 py-2 text-sm text-foreground placeholder:text-tenue/60"
-              />
+              <input value={nombre} onChange={(e) => setNombre(e.target.value)} placeholder="Ej: Lila"
+                className="w-full rounded-lg border border-borde bg-background px-3 py-2 text-sm text-foreground placeholder:text-tenue/60" />
             </div>
             <div>
               <label className="mb-1 block text-[11px] text-tenue">Foto de este color</label>
               <span className="flex items-center gap-2 rounded-lg border border-dashed border-borde bg-background px-3 py-2 text-xs text-tenue">
-                📷 Subir <span className="text-tenue/60">(opcional)</span>
+                📷 Subir
               </span>
             </div>
-            <button
-              type="button"
-              onClick={agregar}
-              className="rounded-lg bg-acento px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-            >
+            <button type="button" onClick={agregar}
+              className="rounded-lg bg-acento px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90">
               Agregar
             </button>
           </div>
           <p className="mt-3 flex items-center gap-2 text-[11px] text-tenue">
             <span className="inline-block h-4 w-4 rounded-full border border-borde" style={{ backgroundColor: hex }} />
-            Así se va a ver el circulito. Si subís la foto de ese color, al tocarlo en la tienda cambia la imagen.
+            Al tocar este color en la tienda, la foto grande cambia a la de este color.
           </p>
         </div>
       )}
-
-      <p className="mt-2 text-xs text-tenue">
-        Todos los colores van dentro de <strong className="font-semibold text-foreground">este mismo producto</strong> — no se crea uno por color. Probá tocar “Agregar color”. 👆
-      </p>
     </div>
   );
 }
@@ -251,22 +283,15 @@ export function AdminPanel() {
             <div className="space-y-5">
               <div className="rounded-xl border border-borde bg-background p-6">
                 <h2 className="mb-4 text-base font-semibold">Agregar producto</h2>
-                <div className="mb-4">
-                  <label className="mb-1.5 block text-xs font-medium text-tenue">Fotos del producto</label>
-                  <div className="flex items-center gap-3 rounded-lg border border-dashed border-borde bg-superficie px-4 py-4 text-sm text-tenue">
-                    <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-acento/15 text-xl">📷</span>
-                    <span><span className="font-semibold text-acento">Subir fotos</span> — arrastrá o tocá para elegir varias del celular a la vez. La <strong className="text-foreground">primera</strong> es la principal (la que se ve en la tienda); las demás quedan como fotos extra de la prenda.</span>
-                  </div>
-                </div>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <Campo label="Nombre" placeholder="Ej: Buzo Oversize Dama" />
                   <Campo label="Categoría" valor="Buzos" />
                   <Campo label="Precio minorista" placeholder="$ 0" />
                   <Campo label="Precio mayorista" placeholder="$ 0" />
-                  <div className="sm:col-span-2"><Campo label="Descripción" area placeholder="Material, talles, colores disponibles…" /></div>
+                  <div className="sm:col-span-2"><Campo label="Descripción" area placeholder="Material, composición, detalles…" /></div>
                   <Campo label="Talles" valor="S · M · L · XL" />
                   <Campo label="Destacar en la home" valor="No" />
-                  <BloqueColores />
+                  <BloqueFotosColores />
                 </div>
                 <Bloqueado />
               </div>
@@ -347,17 +372,35 @@ export function AdminPanel() {
             <div className="space-y-5">
               <div className="rounded-xl border border-borde bg-background p-6">
                 <h2 className="mb-4 text-base font-semibold">Portada / Banner principal</h2>
-                <div className="mb-4">
-                  <label className="mb-1.5 block text-xs font-medium text-tenue">Imagen de fondo</label>
-                  <div className="flex items-center gap-3 rounded-lg border border-dashed border-borde bg-superficie px-4 py-4 text-sm text-tenue">
-                    <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-acento/15 text-xl">🖼️</span>
-                    <span><span className="font-semibold text-acento">Cambiar imagen</span> — la foto de fondo del inicio.</span>
-                  </div>
+                <label className="mb-1.5 block text-xs font-medium text-tenue">Imagen de fondo</label>
+                <div
+                  className="relative mb-1.5 h-32 overflow-hidden rounded-lg border border-borde bg-cover bg-center"
+                  style={{ backgroundImage: `url(${BASE_PATH}/fondo-inicio.jpg)` }}
+                >
+                  <span className="absolute bottom-2 right-2 cursor-not-allowed rounded-lg bg-background/90 px-3 py-1.5 text-xs font-semibold text-acento">🖼️ Cambiar imagen</span>
                 </div>
+                <p className="mb-4 text-[11px] text-tenue">Se ve detrás del texto del inicio.</p>
                 <div className="grid gap-4">
+                  <Campo label="Etiqueta de arriba" valor="Temporada Invierno · Venta por mayor" />
                   <Campo label="Título" valor="Ropa de damas y niñas directo de fábrica" />
                   <Campo label="Bajada" area valor="Somos fabricantes. Elegí las prendas, armá tu pedido por mayor y lo cerramos por WhatsApp, con envíos a todas las provincias." />
                 </div>
+                <Bloqueado />
+              </div>
+
+              <div className="rounded-xl border border-borde bg-background p-6">
+                <h2 className="mb-1 text-base font-semibold">Bloque “Comprás por cantidad”</h2>
+                <p className="mb-4 text-sm text-tenue">El recuadro del final del inicio que invita a comprar por mayor.</p>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <Campo label="Título" valor="¿Comprás por cantidad?" />
+                  <Campo label="Mínimo de prendas para precio mayorista" valor={String(MINIMO_MAYORISTA)} />
+                  <div className="sm:col-span-2">
+                    <Campo label="Texto" area valor={`Desde ${MINIMO_MAYORISTA} prendas accedés a precios mayoristas. Cambiá el modo arriba y vas a ver los precios por unidad en todo el catálogo.`} />
+                  </div>
+                </div>
+                <p className="mt-3 rounded-lg bg-acento/10 px-3 py-2 text-[11px] text-tenue">
+                  💡 El <strong className="text-foreground">mínimo mayorista</strong> lo definís vos. Se usa en todo el sitio: el catálogo, la ficha y el pedido por WhatsApp toman este número.
+                </p>
                 <Bloqueado />
               </div>
             </div>
