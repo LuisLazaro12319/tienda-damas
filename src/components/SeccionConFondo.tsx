@@ -21,15 +21,7 @@ export function SeccionConFondo({
           <div
             aria-hidden
             className="absolute inset-0 -z-10 bg-cover bg-center"
-            style={{
-              backgroundImage: `url(${BASE_PATH}/${fondo})`,
-              // Desvanece la foto arriba y abajo para que no corte en una
-              // línea recta que compita con el separador de luz.
-              WebkitMaskImage:
-                "linear-gradient(to bottom, transparent, #000 56px, #000 calc(100% - 56px), transparent)",
-              maskImage:
-                "linear-gradient(to bottom, transparent, #000 56px, #000 calc(100% - 56px), transparent)",
-            }}
+            style={{ backgroundImage: `url(${BASE_PATH}/${fondo})` }}
           />
           <div aria-hidden className="absolute inset-0 -z-10 bg-background/75" />
         </>
