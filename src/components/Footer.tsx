@@ -125,7 +125,8 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-borde px-4 py-5 text-center text-xs text-tenue sm:px-6">
+      <Separador />
+      <div className="px-4 py-5 text-center text-xs text-tenue sm:px-6">
         Demo de sitio web · {MARCA.nombre} · Productos y precios de ejemplo
       </div>
     </footer>
