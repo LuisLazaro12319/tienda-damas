@@ -36,6 +36,11 @@ export default function Home() {
           fill
           priority
           className="object-cover object-right"
+          style={{
+            // Se desvanece abajo para no cortar en una línea recta contra el separador.
+            WebkitMaskImage: "linear-gradient(to bottom, #000 72%, transparent)",
+            maskImage: "linear-gradient(to bottom, #000 72%, transparent)",
+          }}
         />
         {/* Degradé para que el texto se lea sobre el fondo, en claro y oscuro */}
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/25 sm:to-transparent" />
