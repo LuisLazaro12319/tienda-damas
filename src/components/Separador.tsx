@@ -18,9 +18,11 @@ export function Separador({ className = "" }: { className?: string }) {
         style={{ display: "block" }}
       >
         <defs>
-          <pattern id={id} width="18" height="17" patternUnits="userSpaceOnUse">
+          <pattern id={id} width="13" height="17" patternUnits="userSpaceOnUse">
+            {/* Diente de sierra inclinado a la derecha: sube en diagonal larga
+                y baja corto, así el pico queda apuntando a la derecha. */}
             <path
-              d="M0 12 L4.5 3 L9 12 L13.5 3 L18 12"
+              d="M0 12 L10 3 L13 12"
               fill="none"
               stroke="var(--acento)"
               strokeWidth="3"
@@ -28,7 +30,7 @@ export function Separador({ className = "" }: { className?: string }) {
               strokeLinecap="round"
             />
             <path
-              d="M0 17 L4.5 8 L9 17 L13.5 8 L18 17"
+              d="M0 17 L10 8 L13 17"
               fill="none"
               stroke="var(--acento)"
               strokeWidth="3"

@@ -91,6 +91,8 @@ export default function Home() {
 
       <ComoComprar />
 
+      <Separador />
+
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <div className="rounded-2xl border border-borde bg-superficie p-8 sm:p-12">
           <h2 className="titulo-display text-2xl sm:text-3xl">
