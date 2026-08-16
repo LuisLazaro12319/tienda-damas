@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Paleta blanco + celeste (template de tienda). */
+/* Paleta blanco + celeste (modo claro, por defecto). */
 :root {
   --background: #ffffff;
   --superficie: #f2f8fd;
@@ -9,6 +9,18 @@
   --tenue: #5f7183;
   --acento: #2ba6e8;
   --acento-fuerte: #1789cf;
+}
+
+/* Modo oscuro: negro azulado + celeste brillante. */
+:root[data-theme="dark"] {
+  --background: #0a0e14;
+  --superficie: #141b25;
+  --borde: #26313f;
+  --foreground: #eef4fa;
+  --tenue: #8ea3b6;
+  --acento: #3cb6f0;
+  --acento-fuerte: #62c6f5;
+  color-scheme: dark;
 }
 
 @theme inline {

@@ -60,9 +60,16 @@ export default function RootLayout({
   return (
     <html
       lang="es-AR"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var t=localStorage.getItem('tienda.tema');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}",
+          }}
+        />
         <TiendaProvider>
           <SiteChrome>{children}</SiteChrome>
         </TiendaProvider>

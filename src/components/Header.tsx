@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useTienda } from "@/context/TiendaContext";
 import { ModoToggle } from "@/components/ModoToggle";
+import { TemaToggle } from "@/components/TemaToggle";
 import { MARCA } from "@/lib/config";
 
 const LINKS = [
@@ -41,6 +42,8 @@ export function Header() {
           <div className="hidden sm:block">
             <ModoToggle />
           </div>
+
+          <TemaToggle />
 
           <Link
             href="/carrito"
