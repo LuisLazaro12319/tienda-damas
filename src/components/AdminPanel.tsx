@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { productos, CATEGORIAS } from "@/data/productos";
 import { precio } from "@/lib/formato";
+import { SelectorPaleta } from "@/components/SelectorPaleta";
 import { MARCA, MINIMO_MAYORISTA, BASE_PATH } from "@/lib/config";
 
 /* WhatsApp de contacto para activar el panel (número del desarrollador). */
@@ -222,7 +223,7 @@ export function AdminPanel() {
         </aside>
 
         {/* Main */}
-        <main className="flex-1 px-4 py-6 sm:px-8">
+        <main className="min-w-0 flex-1 px-4 py-6 sm:px-8">
           {/* Tabs mobile */}
           <div className="mb-5 flex gap-2 overflow-x-auto md:hidden">
             {NAV.map((n) => (
@@ -410,27 +411,12 @@ export function AdminPanel() {
           {vista === "colores" && (
             <div className="space-y-5">
               <div className="rounded-xl border border-borde bg-background p-6">
-                <h2 className="mb-1 text-base font-semibold">Color principal</h2>
-                <p className="mb-4 text-sm text-tenue">El color de los botones, precios y detalles de toda la tienda.</p>
-                <div className="flex flex-wrap gap-3">
-                  {[
-                    { c: "#dd5498", n: "Rosa" },
-                    { c: "#2ba6e8", n: "Celeste" },
-                    { c: "#8b5cf6", n: "Violeta" },
-                    { c: "#22b07d", n: "Verde" },
-                    { c: "#f5b301", n: "Dorado" },
-                    { c: "#12283d", n: "Azul noche" },
-                  ].map((o, i) => (
-                    <span key={o.c} className="cursor-not-allowed text-center">
-                      <span
-                        className={`block h-11 w-11 rounded-full ${i === 0 ? "ring-2 ring-offset-2 ring-offset-background" : ""}`}
-                        style={{ backgroundColor: o.c, ...(i === 0 ? { boxShadow: "0 0 0 2px var(--acento)" } : {}) }}
-                      />
-                      <span className="mt-1 block text-[11px] text-tenue">{o.n}</span>
-                    </span>
-                  ))}
+                <div className="mb-1 flex flex-wrap items-center gap-2">
+                  <h2 className="text-base font-semibold">Color principal</h2>
+                  <span className="rounded-full bg-[#e6f6ec] px-2 py-0.5 text-[11px] font-semibold text-[#1c8a4d]">✨ En vivo</span>
                 </div>
-                <Bloqueado />
+                <p className="mb-4 text-sm text-tenue">Elegí el color de los botones, precios y detalles de toda la tienda. Se cambia al instante y queda guardado.</p>
+                <SelectorPaleta />
               </div>
 
               <div className="rounded-xl border border-borde bg-background p-6">
