@@ -34,6 +34,7 @@ export const productos: Producto[] = [
     talles: TALLES_DAMA,
     colores: [ROSA, CREMA, NEGRO, CELESTE],
     destacado: true,
+    foto: true,
   },
   {
     slug: "campera-canguro-dama",
@@ -47,6 +48,7 @@ export const productos: Producto[] = [
     talles: TALLES_DAMA,
     colores: [GRIS, NEGRO, ROSA, LILA],
     destacado: true,
+    foto: true,
   },
   {
     slug: "sweater-hilo-dama",
@@ -60,6 +62,7 @@ export const productos: Producto[] = [
     talles: TALLES_DAMA,
     colores: [CREMA, NEGRO, OFFWHITE, VERDE],
     destacado: true,
+    foto: true,
   },
   {
     slug: "pantalon-palazzo-dama",
@@ -73,6 +76,7 @@ export const productos: Producto[] = [
     talles: TALLES_PANTALON,
     colores: [NEGRO, CREMA, GRIS],
     destacado: true,
+    foto: true,
   },
   {
     slug: "calza-deportiva-dama",
@@ -134,6 +138,7 @@ export const productos: Producto[] = [
     talles: TALLES_NENA,
     colores: [ROSA, CELESTE, LILA],
     destacado: true,
+    foto: true,
   },
   {
     slug: "conjunto-remera-calza-nena",

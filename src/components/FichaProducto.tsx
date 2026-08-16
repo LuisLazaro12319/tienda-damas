@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { useTienda } from "@/context/TiendaContext";
 import { PrendaPlaceholder } from "@/components/PrendaPlaceholder";
 import { precio } from "@/lib/formato";
 import { linkConsulta } from "@/lib/whatsapp";
-import { MINIMO_MAYORISTA } from "@/lib/config";
+import { MINIMO_MAYORISTA, BASE_PATH } from "@/lib/config";
 import type { Producto } from "@/lib/types";
 
 export function FichaProducto({ producto }: { producto: Producto }) {
@@ -32,11 +33,21 @@ export function FichaProducto({ producto }: { producto: Producto }) {
     <div className="mt-6 grid gap-10 md:grid-cols-2">
       <div className="overflow-hidden rounded-2xl border border-borde">
         <div className="aspect-[4/5]">
-          <PrendaPlaceholder
-            categoria={producto.categoria}
-            hex={color.hex}
-            nombre={producto.nombre}
-          />
+          {producto.foto ? (
+            <Image
+              src={`${BASE_PATH}/prod/${producto.slug}.jpg`}
+              alt={producto.nombre}
+              width={640}
+              height={800}
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <PrendaPlaceholder
+              categoria={producto.categoria}
+              hex={color.hex}
+              nombre={producto.nombre}
+            />
+          )}
         </div>
       </div>
 

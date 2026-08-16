@@ -30,6 +30,9 @@ export type Producto = {
   detalle: string;
   destacado?: boolean;
   sinStock?: boolean;
+  /** Si true, hay una foto real en /public/prod/<slug>.jpg. Si no, se usa la
+   *  silueta de PrendaPlaceholder. */
+  foto?: boolean;
 };
 
 export type ItemCarrito = {

@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useTienda } from "@/context/TiendaContext";
 import { PrendaPlaceholder } from "@/components/PrendaPlaceholder";
 import { precio } from "@/lib/formato";
+import { BASE_PATH } from "@/lib/config";
 import type { Producto } from "@/lib/types";
 
 export function ProductoCard({ producto }: { producto: Producto }) {
@@ -18,11 +20,21 @@ export function ProductoCard({ producto }: { producto: Producto }) {
     >
       <div className="relative aspect-[4/5] overflow-hidden">
         <div className="h-full w-full transition-transform duration-500 group-hover:scale-[1.04]">
-          <PrendaPlaceholder
-            categoria={producto.categoria}
-            hex={producto.colores[0].hex}
-            nombre={producto.nombre}
-          />
+          {producto.foto ? (
+            <Image
+              src={`${BASE_PATH}/prod/${producto.slug}.jpg`}
+              alt={producto.nombre}
+              width={640}
+              height={800}
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <PrendaPlaceholder
+              categoria={producto.categoria}
+              hex={producto.colores[0].hex}
+              nombre={producto.nombre}
+            />
+          )}
         </div>
         {producto.sinStock && (
           <div className="absolute inset-0 flex items-center justify-center bg-black/65">
