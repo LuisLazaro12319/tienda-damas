@@ -26,6 +26,7 @@ export const MARCA = {
   direccion: "",
   instagram: "",
   facebook: "",
+  tiktok: "https://www.tiktok.com/@liliana.0328",
   /** ⚠️ DEMO: de ejemplo, se reemplaza por el real de la clienta. */
   email: "",
 } as const;

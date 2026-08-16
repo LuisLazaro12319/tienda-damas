@@ -26,28 +26,19 @@ function BanderaArgentina() {
   );
 }
 
-function IconoFacebook() {
+function IconoTikTok() {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M9.1 23.7v-8H6.6v-3.7h2.5v-1.6c0-4.1 1.9-6 5.9-6 .4 0 1 0 1.5.1.4 0 .8.1 1.1.2v3.3l-.7-.1h-.7c-.7 0-1.3.1-1.7.3-.3.1-.5.3-.7.6-.2.4-.4 1-.4 1.8V12h3.9l-.4 2.1-.3 1.6h-3.2v8c5.1-.6 9.1-5 9.1-10.3C22.5 5.6 17.8 1 12 1S1.5 5.6 1.5 11.4c0 5.3 4 9.7 9.1 10.3l-1.5 2Z" />
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M16.6 5.82a4.28 4.28 0 0 1-1.02-2.82H12.5v12.35a2.53 2.53 0 1 1-2.53-2.53c.2 0 .4.03.59.08V9.66a5.66 5.66 0 0 0-.59-.03A5.63 5.63 0 1 0 15.6 15.3V9.4a7.32 7.32 0 0 0 4.3 1.38V7.66a4.28 4.28 0 0 1-3.3-1.84z" />
     </svg>
   );
 }
 
-function IconoInstagram() {
+function IconoWhatsApp() {
   return (
-    <svg
-      width="22"
-      height="22"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.9"
-      aria-hidden="true"
-    >
-      <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" />
-      <circle cx="12" cy="12" r="4.2" />
-      <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none" />
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35Z" />
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.96L2 22l5.25-1.38a9.86 9.86 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.83 2.41a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Z" />
     </svg>
   );
 }
@@ -95,46 +86,32 @@ export function Footer() {
             Seguinos en nuestras redes
           </h3>
 
-          {(MARCA.facebook || MARCA.instagram) && (
-            <div className="flex gap-4">
-              {MARCA.facebook && (
-                <a
-                  href={MARCA.facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Facebook de ${MARCA.nombre}`}
-                  className="text-foreground transition-colors hover:text-acento"
-                >
-                  <IconoFacebook />
-                </a>
-              )}
-              {MARCA.instagram && (
-                <a
-                  href={MARCA.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Instagram de ${MARCA.nombre}`}
-                  className="text-foreground transition-colors hover:text-acento"
-                >
-                  <IconoInstagram />
-                </a>
-              )}
-            </div>
-          )}
-
-          {MARCA.email && (
-            <p className="mt-5 text-tenue">
-              Email:{" "}
+          <div className="flex gap-3">
+            {MARCA.tiktok && (
               <a
-                href={`mailto:${MARCA.email}`}
-                className="underline underline-offset-4 hover:text-foreground"
+                href={MARCA.tiktok}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`TikTok de ${MARCA.nombre}`}
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-borde text-foreground transition-colors hover:border-transparent hover:bg-foreground hover:text-background"
               >
-                {MARCA.email}
+                <IconoTikTok />
               </a>
-            </p>
-          )}
+            )}
+            <a
+              href={`https://wa.me/${WHATSAPP.mayorista}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`WhatsApp de ${MARCA.nombre}`}
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-borde text-foreground transition-colors hover:border-transparent hover:bg-[#25D366] hover:text-white"
+            >
+              <IconoWhatsApp />
+            </a>
+          </div>
 
-          <p className="mt-3 text-tenue">Cualquier consulta contactar al</p>
+          <h3 className="mb-2 mt-6 font-medium uppercase tracking-wide">
+            Contacto
+          </h3>
           <a
             href={`https://wa.me/${WHATSAPP.mayorista}`}
             target="_blank"
