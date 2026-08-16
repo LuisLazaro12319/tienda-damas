@@ -145,12 +145,16 @@ function Bloqueado() {
   );
 }
 
-function Acciones({ conMostrar = false }: { conMostrar?: boolean }) {
+function Acciones({ agotado = false }: { agotado?: boolean }) {
   return (
     <div className="flex flex-wrap gap-1.5">
       <span className="cursor-not-allowed rounded-md border border-borde bg-superficie px-2.5 py-1 text-xs font-medium text-tenue">✏️ Editar</span>
-      <span className="cursor-not-allowed rounded-md border border-borde bg-superficie px-2.5 py-1 text-xs font-medium text-tenue">{conMostrar ? "👁️ Mostrar" : "🚫 Ocultar"}</span>
-      <span className="cursor-not-allowed rounded-md border border-[#f3c9c4] bg-[#fdf2f1] px-2.5 py-1 text-xs font-medium text-[#c0392b]">🗑️ Eliminar</span>
+      {agotado ? (
+        <span className="cursor-not-allowed rounded-md border border-[#bfe6cd] bg-[#e6f6ec] px-2.5 py-1 text-xs font-medium text-[#1c8a4d]">✅ Reponer</span>
+      ) : (
+        <span className="cursor-not-allowed rounded-md border border-[#f3c9c4] bg-[#fdf2f1] px-2.5 py-1 text-xs font-medium text-[#c0392b]">🔴 Marcar agotado</span>
+      )}
+      <span className="cursor-not-allowed rounded-md border border-borde bg-superficie px-2.5 py-1 text-xs font-medium text-tenue">🗑️ Eliminar</span>
     </div>
   );
 }
@@ -251,7 +255,7 @@ export function AdminPanel() {
                   <label className="mb-1.5 block text-xs font-medium text-tenue">Fotos del producto</label>
                   <div className="flex items-center gap-3 rounded-lg border border-dashed border-borde bg-superficie px-4 py-4 text-sm text-tenue">
                     <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-acento/15 text-xl">📷</span>
-                    <span><span className="font-semibold text-acento">Subir fotos</span> — arrastrá o tocá para elegir desde el celular. Podés cargar varias.</span>
+                    <span><span className="font-semibold text-acento">Subir fotos</span> — arrastrá o tocá para elegir varias del celular a la vez. La <strong className="text-foreground">primera</strong> es la principal (la que se ve en la tienda); las demás quedan como fotos extra de la prenda.</span>
                   </div>
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2">
@@ -284,7 +288,7 @@ export function AdminPanel() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-borde">
-                      {productos.slice(0, 8).map((p) => (
+                      {[...productos].sort((a, b) => (b.sinStock ? 1 : 0) - (a.sinStock ? 1 : 0)).slice(0, 8).map((p) => (
                         <tr key={p.slug}>
                           <td className="py-2.5 pr-3">
                             <div className="flex items-center gap-2.5">
@@ -296,12 +300,12 @@ export function AdminPanel() {
                           <td className="py-2.5 pr-3 font-semibold">{precio(p.precioMinorista)}</td>
                           <td className="py-2.5 pr-3">
                             {p.sinStock ? (
-                              <span className="rounded-full bg-[#fdf2f1] px-2 py-0.5 text-xs font-semibold text-[#c0392b]">Sin stock</span>
+                              <span className="rounded-full bg-[#fdf2f1] px-2 py-0.5 text-xs font-semibold text-[#c0392b]">Agotado</span>
                             ) : (
                               <span className="rounded-full bg-[#e6f6ec] px-2 py-0.5 text-xs font-semibold text-[#1c8a4d]">Publicado</span>
                             )}
                           </td>
-                          <td className="py-2.5"><Acciones conMostrar={p.sinStock} /></td>
+                          <td className="py-2.5"><Acciones agotado={p.sinStock} /></td>
                         </tr>
                       ))}
                     </tbody>

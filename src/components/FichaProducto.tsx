@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useTienda } from "@/context/TiendaContext";
 import { PrendaPlaceholder } from "@/components/PrendaPlaceholder";
+import { CintaAgotado } from "@/components/CintaAgotado";
 import { precio } from "@/lib/formato";
 import { linkConsulta } from "@/lib/whatsapp";
 import { MINIMO_MAYORISTA, BASE_PATH } from "@/lib/config";
@@ -32,7 +33,8 @@ export function FichaProducto({ producto }: { producto: Producto }) {
   return (
     <div className="mt-6 grid gap-10 md:grid-cols-2">
       <div>
-        <div className="overflow-hidden rounded-2xl border border-borde">
+        <div className="relative overflow-hidden rounded-2xl border border-borde">
+          {producto.sinStock && <CintaAgotado />}
           <div className="aspect-[4/5]">
             {producto.foto ? (
               <Image
