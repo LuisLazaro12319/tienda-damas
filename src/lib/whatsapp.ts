@@ -23,7 +23,7 @@ export function linkPedido(
   const encabezado =
     modo === "mayorista"
       ? `¡Hola ${MARCA.nombre}! Quiero hacer un *pedido MAYORISTA* 📦`
-      : `¡Hola ${MARCA.nombre}! Quiero hacer un *pedido* 🛍️`;
+      : `¡Hola ${MARCA.nombre}! Quiero hacer un *pedido* 👗`;
 
   const detalle = lineas
     .map(
@@ -38,7 +38,7 @@ export function linkPedido(
   const cierre =
     modo === "mayorista"
       ? `Total: *${precio(total)}* (${unidades} unidades)\n\n` +
-        `Mínimo mayorista: ${MINIMO_MAYORISTA} unidades ✔️\n` +
+        `Mínimo mayorista: ${MINIMO_MAYORISTA} unidades ✅\n` +
         `Quedo atento para coordinar pago y envío.`
       : `Total: *${precio(total)}* (${unidades} ${unidades === 1 ? "prenda" : "prendas"})\n\n` +
         `Quedo atento para coordinar pago y envío.`;

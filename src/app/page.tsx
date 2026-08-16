@@ -4,6 +4,7 @@ import { productos } from "@/data/productos";
 import { ProductoCard } from "@/components/ProductoCard";
 import { ModoToggle } from "@/components/ModoToggle";
 import { ComoComprar } from "@/components/ComoComprar";
+import { Separador } from "@/components/Separador";
 import { MARCA, MINIMO_MAYORISTA, BASE_PATH } from "@/lib/config";
 
 const BENEFICIOS = [
@@ -26,7 +27,7 @@ export default function Home() {
 
   return (
     <>
-      <section className="relative overflow-hidden border-b border-borde">
+      <section className="relative overflow-hidden">
         <Image
           src={`${BASE_PATH}/fondo-inicio.jpg`}
           alt=""
@@ -53,7 +54,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-b border-borde">
+      <Separador />
+
+      <section>
         <div className="mx-auto grid max-w-6xl gap-px bg-borde sm:grid-cols-3">
           {BENEFICIOS.map((b) => (
             <div key={b.titulo} className="bg-background px-4 py-7 sm:px-6">
@@ -63,6 +66,8 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <Separador />
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <div className="mb-8 flex items-end justify-between gap-4">
@@ -81,6 +86,8 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <Separador />
 
       <ComoComprar />
 
