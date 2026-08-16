@@ -9,13 +9,14 @@ import { MARCA } from "@/lib/config";
 /* WhatsApp de contacto para activar el panel (número del desarrollador). */
 const WA_CONTACTO = "5491156199449";
 
-type Vista = "inicio" | "productos" | "categorias" | "web" | "config";
+type Vista = "inicio" | "productos" | "categorias" | "web" | "colores" | "config";
 
 const NAV: { id: Vista; nombre: string; icono: string }[] = [
   { id: "inicio", nombre: "Inicio", icono: "🏠" },
   { id: "productos", nombre: "Productos", icono: "👗" },
   { id: "categorias", nombre: "Categorías", icono: "🗂️" },
   { id: "web", nombre: "Inicio de la web", icono: "🖼️" },
+  { id: "colores", nombre: "Colores y tema", icono: "🎨" },
   { id: "config", nombre: "Configuración", icono: "⚙️" },
 ];
 
@@ -251,6 +252,45 @@ export function AdminPanel() {
                 <div className="grid gap-4">
                   <Campo label="Título" valor="Ropa de damas y niñas directo de fábrica" />
                   <Campo label="Bajada" area valor="Somos fabricantes. Elegí las prendas, armá tu pedido por mayor y lo cerramos por WhatsApp, con envíos a todas las provincias." />
+                </div>
+                <Bloqueado />
+              </div>
+            </div>
+          )}
+
+          {/* ===== COLORES Y TEMA ===== */}
+          {vista === "colores" && (
+            <div className="space-y-5">
+              <div className="rounded-xl border border-borde bg-background p-6">
+                <h2 className="mb-1 text-base font-semibold">Color principal</h2>
+                <p className="mb-4 text-sm text-tenue">El color de los botones, precios y detalles de toda la tienda.</p>
+                <div className="flex flex-wrap gap-3">
+                  {[
+                    { c: "#2ba6e8", n: "Celeste" },
+                    { c: "#e5679a", n: "Rosa" },
+                    { c: "#8b5cf6", n: "Violeta" },
+                    { c: "#22b07d", n: "Verde" },
+                    { c: "#f5b301", n: "Dorado" },
+                    { c: "#12283d", n: "Azul noche" },
+                  ].map((o, i) => (
+                    <span key={o.c} className="cursor-not-allowed text-center">
+                      <span
+                        className={`block h-11 w-11 rounded-full ${i === 0 ? "ring-2 ring-offset-2 ring-offset-background" : ""}`}
+                        style={{ backgroundColor: o.c, ...(i === 0 ? { boxShadow: "0 0 0 2px var(--acento)" } : {}) }}
+                      />
+                      <span className="mt-1 block text-[11px] text-tenue">{o.n}</span>
+                    </span>
+                  ))}
+                </div>
+                <Bloqueado />
+              </div>
+
+              <div className="rounded-xl border border-borde bg-background p-6">
+                <h2 className="mb-1 text-base font-semibold">Tema por defecto</h2>
+                <p className="mb-4 text-sm text-tenue">Con qué modo abre la tienda. Igual, tus clientas pueden cambiar entre claro y oscuro con el botón 🌙 del sitio.</p>
+                <div className="flex gap-3">
+                  <span className="cursor-not-allowed rounded-lg border-2 border-acento bg-superficie px-4 py-2.5 text-sm font-semibold">☀️ Claro</span>
+                  <span className="cursor-not-allowed rounded-lg border border-borde bg-superficie px-4 py-2.5 text-sm font-medium text-tenue">🌙 Oscuro</span>
                 </div>
                 <Bloqueado />
               </div>

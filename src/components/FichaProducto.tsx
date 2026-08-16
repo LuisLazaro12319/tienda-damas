@@ -31,24 +31,58 @@ export function FichaProducto({ producto }: { producto: Producto }) {
 
   return (
     <div className="mt-6 grid gap-10 md:grid-cols-2">
-      <div className="overflow-hidden rounded-2xl border border-borde">
-        <div className="aspect-[4/5]">
-          {producto.foto ? (
-            <Image
-              src={`${BASE_PATH}/prod/${producto.slug}.jpg`}
-              alt={producto.nombre}
-              width={640}
-              height={800}
-              className="h-full w-full object-cover"
-            />
-          ) : (
-            <PrendaPlaceholder
-              categoria={producto.categoria}
-              hex={color.hex}
-              nombre={producto.nombre}
-            />
-          )}
+      <div>
+        <div className="overflow-hidden rounded-2xl border border-borde">
+          <div className="aspect-[4/5]">
+            {producto.foto ? (
+              <Image
+                src={`${BASE_PATH}/prod/${producto.slug}.jpg`}
+                alt={producto.nombre}
+                width={640}
+                height={800}
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <PrendaPlaceholder
+                categoria={producto.categoria}
+                hex={color.hex}
+                nombre={producto.nombre}
+              />
+            )}
+          </div>
         </div>
+
+        {/* Galería: la foto principal + espacios para más fotos (colores, detalles) */}
+        <div className="mt-3 flex gap-3">
+          <span className="h-20 w-16 overflow-hidden rounded-lg border-2 border-acento">
+            {producto.foto ? (
+              <Image
+                src={`${BASE_PATH}/prod/${producto.slug}.jpg`}
+                alt=""
+                width={128}
+                height={160}
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <PrendaPlaceholder categoria={producto.categoria} hex={color.hex} nombre="" />
+            )}
+          </span>
+          {[0, 1, 2].map((i) => (
+            <span
+              key={i}
+              className="flex h-20 w-16 items-center justify-center rounded-lg border border-dashed border-borde bg-superficie text-tenue"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="2" />
+                <circle cx="9" cy="10" r="1.6" />
+                <path d="m3 17 5-4 4 3 3-2 6 5" />
+              </svg>
+            </span>
+          ))}
+        </div>
+        <p className="mt-2 text-xs text-tenue">
+          Podés cargar varias fotos por prenda (colores, detalles, cómo queda puesta).
+        </p>
       </div>
 
       <div>
