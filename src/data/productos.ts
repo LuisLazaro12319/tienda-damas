@@ -32,7 +32,13 @@ export const productos: Producto[] = [
     precioMinorista: 32000,
     precioMayorista: 19000,
     talles: TALLES_DAMA,
-    colores: [ROSA, CREMA, NEGRO, CELESTE],
+    // Ejemplo con foto por color: al tocar el círculo cambia la imagen.
+    colores: [
+      { ...ROSA, foto: "buzo-oversize-dama.jpg" },
+      { ...CREMA, foto: "buzo-oversize-dama-crema.jpg" },
+      { ...NEGRO, foto: "buzo-oversize-dama-negro.jpg" },
+      { ...CELESTE, foto: "buzo-oversize-dama-celeste.jpg" },
+    ],
     destacado: true,
     foto: true,
   },

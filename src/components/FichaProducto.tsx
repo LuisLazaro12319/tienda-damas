@@ -23,6 +23,13 @@ export function FichaProducto({ producto }: { producto: Producto }) {
   const unitario = precioDe(producto);
   const faltaElegirTalle = talle === null;
 
+  // Foto grande: la del color elegido si tiene; si no, la principal del producto.
+  const fotoPrincipal = color.foto
+    ? `${BASE_PATH}/prod/${color.foto}`
+    : producto.foto
+      ? `${BASE_PATH}/prod/${producto.slug}.jpg`
+      : null;
+
   function handleAgregar() {
     if (!talle || producto.sinStock) return;
     agregar({ slug: producto.slug, talle, color: color.nombre, cantidad });
@@ -36,10 +43,10 @@ export function FichaProducto({ producto }: { producto: Producto }) {
         <div className="relative overflow-hidden rounded-2xl border border-borde">
           {producto.sinStock && <CintaAgotado />}
           <div className="aspect-[4/5]">
-            {producto.foto ? (
+            {fotoPrincipal ? (
               <Image
-                src={`${BASE_PATH}/prod/${producto.slug}.jpg`}
-                alt={producto.nombre}
+                src={fotoPrincipal}
+                alt={`${producto.nombre} — ${color.nombre}`}
                 width={640}
                 height={800}
                 className="h-full w-full object-cover"
@@ -54,36 +61,33 @@ export function FichaProducto({ producto }: { producto: Producto }) {
           </div>
         </div>
 
-        {/* Galería: la foto principal + espacios para más fotos (colores, detalles) */}
-        <div className="mt-3 flex gap-3">
-          <span className="h-20 w-16 overflow-hidden rounded-lg border-2 border-acento">
-            {producto.foto ? (
-              <Image
-                src={`${BASE_PATH}/prod/${producto.slug}.jpg`}
-                alt=""
-                width={128}
-                height={160}
-                className="h-full w-full object-cover"
-              />
-            ) : (
-              <PrendaPlaceholder categoria={producto.categoria} hex={color.hex} nombre="" />
-            )}
-          </span>
-          {[0, 1, 2].map((i) => (
-            <span
-              key={i}
-              className="flex h-20 w-16 items-center justify-center rounded-lg border border-dashed border-borde bg-superficie text-tenue"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
-                <rect x="3" y="5" width="18" height="14" rx="2" />
-                <circle cx="9" cy="10" r="1.6" />
-                <path d="m3 17 5-4 4 3 3-2 6 5" />
-              </svg>
-            </span>
-          ))}
+        {/* Galería: una miniatura por color. Tocarla cambia la foto grande. */}
+        <div className="mt-3 flex flex-wrap gap-3">
+          {producto.colores.map((c) => {
+            const src = c.foto ? `${BASE_PATH}/prod/${c.foto}` : null;
+            const activo = color.nombre === c.nombre;
+            return (
+              <button
+                key={c.nombre}
+                type="button"
+                onClick={() => setColor(c)}
+                aria-label={c.nombre}
+                aria-pressed={activo}
+                className={`h-20 w-16 overflow-hidden rounded-lg border-2 transition-colors ${
+                  activo ? "border-acento" : "border-borde hover:border-tenue"
+                }`}
+              >
+                {src ? (
+                  <Image src={src} alt={c.nombre} width={128} height={160} className="h-full w-full object-cover" />
+                ) : (
+                  <PrendaPlaceholder categoria={producto.categoria} hex={c.hex} nombre="" />
+                )}
+              </button>
+            );
+          })}
         </div>
         <p className="mt-2 text-xs text-tenue">
-          Podés cargar varias fotos por prenda (colores, detalles, cómo queda puesta).
+          Tocá un color y la foto cambia. Cada color puede tener su propia foto.
         </p>
       </div>
 
