@@ -6,6 +6,7 @@ import { ModoToggle } from "@/components/ModoToggle";
 import { ComoComprar } from "@/components/ComoComprar";
 import { Separador } from "@/components/Separador";
 import { SeccionConFondo } from "@/components/SeccionConFondo";
+import { PromosCarrusel } from "@/components/PromosCarrusel";
 import { MARCA, MINIMO_MAYORISTA, BASE_PATH, FONDOS } from "@/lib/config";
 
 const BENEFICIOS = [
@@ -66,6 +67,12 @@ export default function Home() {
             </div>
           ))}
         </div>
+      </section>
+
+      <Separador />
+
+      <section className="py-10 sm:py-12">
+        <PromosCarrusel />
       </section>
 
       <Separador />

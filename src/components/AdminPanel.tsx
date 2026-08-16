@@ -5,17 +5,18 @@ import Link from "next/link";
 import { productos, CATEGORIAS } from "@/data/productos";
 import { precio } from "@/lib/formato";
 import { SelectorPaleta } from "@/components/SelectorPaleta";
-import { MARCA, MINIMO_MAYORISTA, BASE_PATH, FONDOS } from "@/lib/config";
+import { MARCA, MINIMO_MAYORISTA, BASE_PATH, FONDOS, PROMOS } from "@/lib/config";
 
 /* WhatsApp de contacto para activar el panel (número del desarrollador). */
 const WA_CONTACTO = "5491156199449";
 
-type Vista = "inicio" | "productos" | "categorias" | "web" | "colores" | "config";
+type Vista = "inicio" | "productos" | "categorias" | "promos" | "web" | "colores" | "config";
 
 const NAV: { id: Vista; nombre: string; icono: string }[] = [
   { id: "inicio", nombre: "Inicio", icono: "🏠" },
   { id: "productos", nombre: "Productos", icono: "👗" },
   { id: "categorias", nombre: "Categorías", icono: "🗂️" },
+  { id: "promos", nombre: "Promos", icono: "🔥" },
   { id: "web", nombre: "Inicio de la web", icono: "🖼️" },
   { id: "colores", nombre: "Colores y tema", icono: "🎨" },
   { id: "config", nombre: "Configuración", icono: "⚙️" },
@@ -379,6 +380,37 @@ export function AdminPanel() {
                   </tbody>
                 </table>
               </div>
+            </div>
+          )}
+
+          {/* ===== PROMOS ===== */}
+          {vista === "promos" && (
+            <div className="rounded-xl border border-borde bg-background p-6">
+              <div className="mb-1 flex flex-wrap items-center justify-between gap-3">
+                <h2 className="text-base font-semibold">Promos / Ofertas</h2>
+                <span className="cursor-not-allowed rounded-lg bg-acento/90 px-3 py-1.5 text-xs font-semibold text-white">+ Agregar promo</span>
+              </div>
+              <p className="mb-4 text-sm text-tenue">Banners que se muestran arriba de Destacados. Si cargás más de uno, <strong className="text-foreground">rotan solos</strong>. Al tocar una promo, a la clienta se le abre <strong className="text-foreground">WhatsApp</strong> pidiendo info de esa oferta.</p>
+              <div className="space-y-3">
+                {PROMOS.map((promo, i) => (
+                  <div key={promo.imagen} className="flex flex-col gap-3 rounded-lg border border-borde bg-superficie p-3 sm:flex-row sm:items-center">
+                    <div
+                      className="h-24 w-full shrink-0 overflow-hidden rounded-md border border-borde bg-cover bg-center sm:w-56"
+                      style={{ backgroundImage: `url(${BASE_PATH}/${promo.imagen})` }}
+                    />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-medium">{promo.titulo}</p>
+                      <p className="text-xs text-tenue">Orden {i + 1} · al tocarla abre WhatsApp</p>
+                    </div>
+                    <Acciones />
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 flex items-center gap-3 rounded-lg border border-dashed border-acento bg-acento/5 px-4 py-5 text-sm text-tenue">
+                <span className="text-xl">🖼️</span>
+                <span><span className="font-semibold text-acento">Subir promo</span> — elegí el banner (ideal ancho, tipo cartel). Podés sumar varias y ordenarlas.</span>
+              </div>
+              <Bloqueado />
             </div>
           )}
 

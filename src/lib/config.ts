@@ -44,6 +44,16 @@ export const FONDOS = {
 } as const;
 
 /**
+ * Promos / ofertas del carrusel del inicio. La dueña sube los banners desde el
+ * panel. Si hay más de uno, rotan solos; al tocar uno se abre WhatsApp pidiendo
+ * info de esa promo. Vacío = no se muestra la sección.
+ */
+export const PROMOS: { imagen: string; titulo: string }[] = [
+  { imagen: "promos/promo-1.jpg", titulo: "Ofertas" },
+  { imagen: "promos/promo-2.jpg", titulo: "Nuevos ingresos" },
+];
+
+/**
  * Subcarpeta desde la que se sirve el sitio ("/tapias-web" en GitHub Pages,
  * vacío en local y con dominio propio). La define el workflow de deploy.
  *
