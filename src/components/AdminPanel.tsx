@@ -162,6 +162,28 @@ export function AdminPanel() {
                   <div className="sm:col-span-2"><Campo label="Descripción" area placeholder="Material, talles, colores disponibles…" /></div>
                   <Campo label="Talles" valor="S · M · L · XL" />
                   <Campo label="Destacar en la home" valor="No" />
+                  <div className="sm:col-span-2">
+                    <label className="mb-1.5 block text-xs font-medium text-tenue">Colores disponibles</label>
+                    <div className="flex flex-wrap items-center gap-2.5">
+                      {[
+                        { hex: "#e5a7bd", n: "Rosa" },
+                        { hex: "#a9cfe8", n: "Celeste" },
+                        { hex: "#1c1c1c", n: "Negro" },
+                        { hex: "#e8e0d0", n: "Crema" },
+                      ].map((c) => (
+                        <span key={c.n} className="flex items-center gap-1.5 rounded-full border border-borde bg-superficie py-1 pl-1 pr-2.5 text-xs">
+                          <span className="h-5 w-5 rounded-full border border-borde" style={{ backgroundColor: c.hex }} />
+                          {c.n}
+                          <span className="cursor-not-allowed text-tenue">×</span>
+                        </span>
+                      ))}
+                      <span className="flex cursor-not-allowed items-center gap-1.5 rounded-full border border-dashed border-borde px-2.5 py-1.5 text-xs font-medium text-acento">
+                        <span className="flex h-5 w-5 items-center justify-center rounded-full border border-dashed border-acento">+</span>
+                        Agregar color
+                      </span>
+                    </div>
+                    <p className="mt-1.5 text-xs text-tenue">Cada color que sumás aparece como una opción en la prenda, y podés subir una foto para cada uno.</p>
+                  </div>
                 </div>
                 <Bloqueado />
               </div>
