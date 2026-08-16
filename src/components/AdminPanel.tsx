@@ -36,6 +36,106 @@ function Campo({ label, valor, placeholder, area = false }: { label: string; val
   );
 }
 
+/* Bloque de colores INTERACTIVO (demo real de cómo el dueño arma la paleta). */
+function BloqueColores() {
+  const [colores, setColores] = useState([
+    { hex: "#e5a7bd", n: "Rosa" },
+    { hex: "#a9cfe8", n: "Celeste" },
+    { hex: "#1c1c1c", n: "Negro" },
+  ]);
+  const [abierto, setAbierto] = useState(false);
+  const [hex, setHex] = useState("#c4b0dd");
+  const [nombre, setNombre] = useState("");
+
+  function agregar() {
+    const n = nombre.trim() || "Color";
+    setColores((prev) => [...prev, { hex, n }]);
+    setNombre("");
+    setHex("#c4b0dd");
+    setAbierto(false);
+  }
+
+  return (
+    <div className="sm:col-span-2">
+      <label className="mb-1.5 block text-xs font-medium text-tenue">Colores de la prenda</label>
+
+      {/* Círculos ya cargados */}
+      <div className="flex flex-wrap items-center gap-2.5">
+        {colores.map((c, i) => (
+          <span key={`${c.n}-${i}`} className="flex items-center gap-1.5 rounded-full border border-borde bg-superficie py-1 pl-1 pr-2.5 text-xs">
+            <span className="h-5 w-5 rounded-full border border-borde" style={{ backgroundColor: c.hex }} />
+            {c.n}
+            <button
+              type="button"
+              onClick={() => setColores((prev) => prev.filter((_, j) => j !== i))}
+              className="text-tenue transition-colors hover:text-[#c0392b]"
+              aria-label={`Quitar ${c.n}`}
+            >
+              ×
+            </button>
+          </span>
+        ))}
+        <button
+          type="button"
+          onClick={() => setAbierto((v) => !v)}
+          className="flex items-center gap-1.5 rounded-full border border-dashed border-acento px-2.5 py-1.5 text-xs font-medium text-acento transition-colors hover:bg-acento/10"
+        >
+          <span className="flex h-5 w-5 items-center justify-center rounded-full border border-dashed border-acento">+</span>
+          Agregar color
+        </button>
+      </div>
+
+      {/* Selector que aparece al tocar "Agregar color" */}
+      {abierto && (
+        <div className="mt-3 rounded-xl border border-acento/40 bg-superficie p-4">
+          <p className="mb-3 text-xs font-semibold text-foreground">Nuevo color</p>
+          <div className="flex flex-wrap items-end gap-4">
+            <div>
+              <label className="mb-1 block text-[11px] text-tenue">Tono</label>
+              <input
+                type="color"
+                value={hex}
+                onChange={(e) => setHex(e.target.value)}
+                className="h-10 w-14 cursor-pointer rounded-lg border border-borde bg-background p-1"
+              />
+            </div>
+            <div className="min-w-[140px] flex-1">
+              <label className="mb-1 block text-[11px] text-tenue">Nombre</label>
+              <input
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
+                placeholder="Ej: Lila"
+                className="w-full rounded-lg border border-borde bg-background px-3 py-2 text-sm text-foreground placeholder:text-tenue/60"
+              />
+            </div>
+            <div>
+              <label className="mb-1 block text-[11px] text-tenue">Foto de este color</label>
+              <span className="flex items-center gap-2 rounded-lg border border-dashed border-borde bg-background px-3 py-2 text-xs text-tenue">
+                📷 Subir <span className="text-tenue/60">(opcional)</span>
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={agregar}
+              className="rounded-lg bg-acento px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+            >
+              Agregar
+            </button>
+          </div>
+          <p className="mt-3 flex items-center gap-2 text-[11px] text-tenue">
+            <span className="inline-block h-4 w-4 rounded-full border border-borde" style={{ backgroundColor: hex }} />
+            Así se va a ver el circulito. Si subís la foto de ese color, al tocarlo en la tienda cambia la imagen.
+          </p>
+        </div>
+      )}
+
+      <p className="mt-2 text-xs text-tenue">
+        Todos los colores van dentro de <strong className="font-semibold text-foreground">este mismo producto</strong> — no se crea uno por color. Probá tocar “Agregar color”. 👆
+      </p>
+    </div>
+  );
+}
+
 function Bloqueado() {
   return (
     <div className="mt-4 flex flex-wrap items-center gap-3">
@@ -162,28 +262,7 @@ export function AdminPanel() {
                   <div className="sm:col-span-2"><Campo label="Descripción" area placeholder="Material, talles, colores disponibles…" /></div>
                   <Campo label="Talles" valor="S · M · L · XL" />
                   <Campo label="Destacar en la home" valor="No" />
-                  <div className="sm:col-span-2">
-                    <label className="mb-1.5 block text-xs font-medium text-tenue">Colores disponibles</label>
-                    <div className="flex flex-wrap items-center gap-2.5">
-                      {[
-                        { hex: "#e5a7bd", n: "Rosa" },
-                        { hex: "#a9cfe8", n: "Celeste" },
-                        { hex: "#1c1c1c", n: "Negro" },
-                        { hex: "#e8e0d0", n: "Crema" },
-                      ].map((c) => (
-                        <span key={c.n} className="flex items-center gap-1.5 rounded-full border border-borde bg-superficie py-1 pl-1 pr-2.5 text-xs">
-                          <span className="h-5 w-5 rounded-full border border-borde" style={{ backgroundColor: c.hex }} />
-                          {c.n}
-                          <span className="cursor-not-allowed text-tenue">×</span>
-                        </span>
-                      ))}
-                      <span className="flex cursor-not-allowed items-center gap-1.5 rounded-full border border-dashed border-borde px-2.5 py-1.5 text-xs font-medium text-acento">
-                        <span className="flex h-5 w-5 items-center justify-center rounded-full border border-dashed border-acento">+</span>
-                        Agregar color
-                      </span>
-                    </div>
-                    <p className="mt-1.5 text-xs text-tenue">Cada color que sumás aparece como una opción en la prenda, y podés subir una foto para cada uno.</p>
-                  </div>
+                  <BloqueColores />
                 </div>
                 <Bloqueado />
               </div>
