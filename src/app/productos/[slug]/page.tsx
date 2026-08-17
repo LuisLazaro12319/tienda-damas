@@ -23,7 +23,7 @@ export default async function ProductoPage({ params }: Props) {
   if (!producto) notFound();
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
+    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12">
       <Link
         href="/productos"
         className="text-sm text-tenue transition-colors hover:text-foreground"

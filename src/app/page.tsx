@@ -40,7 +40,7 @@ export default function Home() {
         />
         {/* Degradé para que el texto se lea sobre el fondo, en claro y oscuro */}
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/25 sm:to-transparent" />
-        <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+        <div className="relative mx-auto max-w-7xl px-4 py-28 sm:px-6 sm:py-44 lg:py-52">
           <p className="mb-4 text-xs uppercase tracking-[0.25em] text-acento">
             Temporada Invierno · Venta por mayor
           </p>
@@ -59,7 +59,7 @@ export default function Home() {
       <Separador />
 
       <section>
-        <div className="mx-auto grid max-w-6xl gap-6 px-4 py-8 sm:grid-cols-3 sm:px-6">
+        <div className="mx-auto grid max-w-7xl gap-6 px-4 py-8 sm:grid-cols-3 sm:px-6">
           {BENEFICIOS.map((b) => (
             <div key={b.titulo}>
               <h3 className="text-sm font-semibold">{b.titulo}</h3>
@@ -76,7 +76,7 @@ export default function Home() {
       <Separador />
 
       <SeccionConFondo fondo={FONDOS.destacados} className="px-4 py-16 sm:px-6">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-7xl">
           <div className="mb-8 flex items-end justify-between gap-4">
             <h2 className="titulo-display text-2xl sm:text-3xl">Destacados</h2>
             <Link
@@ -101,8 +101,8 @@ export default function Home() {
 
       <Separador />
 
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <div className="rounded-2xl border border-borde bg-superficie p-8 sm:p-12">
+      <SeccionConFondo fondo={FONDOS.compras} className="px-4 py-16 sm:px-6">
+        <div className="mx-auto max-w-7xl rounded-2xl border border-borde bg-superficie p-8 sm:p-12">
           <h2 className="titulo-display text-2xl sm:text-3xl">
             ¿Comprás por cantidad?
           </h2>
@@ -115,7 +115,7 @@ export default function Home() {
             <ModoToggle tamano="lg" />
           </div>
         </div>
-      </section>
+      </SeccionConFondo>
     </>
   );
 }

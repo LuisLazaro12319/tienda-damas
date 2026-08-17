@@ -447,6 +447,10 @@ export function AdminPanel() {
                     <label className="mb-1.5 block text-xs font-medium text-tenue">Detrás de “Todos los productos”</label>
                     <PreviewFondo archivo={FONDOS.productos} nota="Detrás del catálogo completo." />
                   </div>
+                  <div>
+                    <label className="mb-1.5 block text-xs font-medium text-tenue">Detrás de “Comprás por cantidad”</label>
+                    <PreviewFondo archivo={FONDOS.compras} nota="Detrás del recuadro del final del inicio." />
+                  </div>
                 </div>
                 <Bloqueado />
               </div>

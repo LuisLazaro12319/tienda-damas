@@ -35,6 +35,16 @@ function IconoTikTok() {
   );
 }
 
+function IconoInstagram() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 function IconoWhatsApp() {
   return (
     <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -48,7 +58,7 @@ export function Footer() {
   return (
     <footer className="mt-20">
       <Separador />
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <span className="titulo-display text-xl font-extrabold italic tracking-tighter">
             {MARCA.nombre}
@@ -89,6 +99,17 @@ export function Footer() {
           </h3>
 
           <div className="flex gap-3">
+            {MARCA.instagram && (
+              <a
+                href={MARCA.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Instagram de ${MARCA.nombre}`}
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-borde text-foreground transition-colors hover:border-transparent hover:bg-[#E1306C] hover:text-white"
+              >
+                <IconoInstagram />
+              </a>
+            )}
             {MARCA.tiktok && (
               <a
                 href={MARCA.tiktok}

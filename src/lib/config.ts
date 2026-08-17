@@ -41,6 +41,7 @@ export const MINIMO_MAYORISTA = 10;
 export const FONDOS = {
   destacados: "fondo-seccion.jpg",
   productos: "fondo-seccion.jpg",
+  compras: "fondo-seccion.jpg",
 } as const;
 
 /**
