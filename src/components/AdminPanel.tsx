@@ -174,9 +174,10 @@ function PreviewFondo({ archivo, nota }: { archivo: string; nota: string }) {
   return (
     <div>
       <div
-        className="relative mb-1.5 h-28 overflow-hidden rounded-lg border border-borde bg-cover bg-center"
-        style={{ backgroundImage: `url(${BASE_PATH}/${archivo})` }}
+        className="relative mb-1.5 flex h-28 items-center justify-center overflow-hidden rounded-lg border border-borde bg-superficie bg-cover bg-center px-4 text-center text-[11px] text-tenue"
+        style={archivo ? { backgroundImage: `url(${BASE_PATH}/${archivo})` } : undefined}
       >
+        {!archivo && <span>Sin imagen — toma el color de la tienda</span>}
         <span className="absolute bottom-2 right-2 cursor-not-allowed rounded-lg bg-background/90 px-3 py-1.5 text-xs font-semibold text-acento">🖼️ Cambiar imagen</span>
       </div>
       <p className="text-[11px] text-tenue">{nota}</p>
