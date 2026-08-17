@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# imagenes sueltas de trabajo
+/fondo de inicio.png
+/ofertas.png
