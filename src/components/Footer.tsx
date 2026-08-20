@@ -56,7 +56,7 @@ function IconoWhatsApp() {
 
 export function Footer() {
   return (
-    <footer className="mt-20">
+    <footer>
       <Separador />
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4">
         <div>
@@ -105,7 +105,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Instagram de ${MARCA.nombre}`}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-borde text-foreground transition-colors hover:border-transparent hover:bg-[#E1306C] hover:text-white"
+                className="flex h-11 w-11 items-center justify-center rounded-none border border-borde text-foreground transition-colors hover:border-transparent hover:bg-[#E1306C] hover:text-white"
               >
                 <IconoInstagram />
               </a>
@@ -116,7 +116,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`TikTok de ${MARCA.nombre}`}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-borde text-foreground transition-colors hover:border-transparent hover:bg-foreground hover:text-background"
+                className="flex h-11 w-11 items-center justify-center rounded-none border border-borde text-foreground transition-colors hover:border-transparent hover:bg-foreground hover:text-background"
               >
                 <IconoTikTok />
               </a>
@@ -126,7 +126,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`WhatsApp de ${MARCA.nombre}`}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-borde text-foreground transition-colors hover:border-transparent hover:bg-[#25D366] hover:text-white"
+              className="flex h-11 w-11 items-center justify-center rounded-none border border-borde text-foreground transition-colors hover:border-transparent hover:bg-[#25D366] hover:text-white"
             >
               <IconoWhatsApp />
             </a>

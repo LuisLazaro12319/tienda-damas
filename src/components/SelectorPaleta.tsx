@@ -50,7 +50,7 @@ export function SelectorPaleta() {
               className="text-center"
             >
               <span
-                className="block h-11 w-11 rounded-full transition-transform hover:scale-105"
+                className="block h-11 w-11 rounded-none transition-transform hover:scale-105"
                 style={{
                   backgroundColor: o.hex,
                   boxShadow: activo
@@ -66,7 +66,7 @@ export function SelectorPaleta() {
         {/* Rueda de color libre */}
         <label className="cursor-pointer text-center">
           <span
-            className="relative block h-11 w-11 overflow-hidden rounded-full border border-borde"
+            className="relative block h-11 w-11 overflow-hidden rounded-none border border-borde"
             style={{
               background:
                 "conic-gradient(#f00,#ff0,#0f0,#0ff,#00f,#f0f,#f00)",

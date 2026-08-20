@@ -21,7 +21,7 @@ export function Header() {
     <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6">
         <Link href="/" className="flex shrink-0 items-center gap-2.5">
-          <span className="text-lg font-extrabold italic tracking-tighter sm:text-xl">
+          <span className="text-lg font-extrabold uppercase tracking-tighter sm:text-xl">
             {MARCA.nombre}
           </span>
         </Link>
@@ -47,7 +47,7 @@ export function Header() {
 
           <Link
             href="/carrito"
-            className="relative flex h-9 items-center gap-2 rounded-full border border-borde px-3.5 text-sm transition-colors hover:border-acento"
+            className="relative flex h-9 items-center gap-2 rounded-none border border-borde px-3.5 text-sm transition-colors hover:border-acento"
           >
             <svg
               width="16"

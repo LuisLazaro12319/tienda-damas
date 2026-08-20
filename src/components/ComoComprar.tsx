@@ -1,3 +1,4 @@
+
 import { MINIMO_MAYORISTA } from "@/lib/config";
 
 /**

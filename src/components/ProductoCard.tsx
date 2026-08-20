@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useTienda } from "@/context/TiendaContext";
 import { PrendaPlaceholder } from "@/components/PrendaPlaceholder";
 import { CintaAgotado } from "@/components/CintaAgotado";
+import { CintaOferta } from "@/components/CintaOferta";
 import { precio } from "@/lib/formato";
 import { BASE_PATH } from "@/lib/config";
 import type { Producto } from "@/lib/types";
@@ -38,8 +39,9 @@ export function ProductoCard({ producto }: { producto: Producto }) {
           )}
         </div>
         {producto.sinStock && <CintaAgotado />}
+        {producto.oferta && !producto.sinStock && <CintaOferta />}
         {modo === "mayorista" && !producto.sinStock && (
-          <span className="absolute left-2.5 top-2.5 rounded-full bg-acento px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white">
+          <span className="absolute right-2.5 top-2.5 rounded-full bg-foreground px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-background">
             −{Math.round((ahorro / producto.precioMinorista) * 100)}%
           </span>
         )}

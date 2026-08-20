@@ -1,43 +1,48 @@
 "use client";
 
 import { useTienda } from "@/context/TiendaContext";
-import type { Modo } from "@/lib/types";
 
-const OPCIONES: { id: Modo; nombre: string }[] = [
-  { id: "minorista", nombre: "Minorista" },
-  { id: "mayorista", nombre: "Mayorista" },
-];
+interface ModoToggleProps {
+  tamano?: "sm" | "md" | "lg";
+}
 
-export function ModoToggle({ tamano = "sm" }: { tamano?: "sm" | "lg" }) {
+export function ModoToggle({ tamano = "md" }: ModoToggleProps) {
   const { modo, setModo } = useTienda();
-  const grande = tamano === "lg";
+
+  const tamanos = {
+    sm: "text-xs px-2.5 py-1 gap-1",
+    md: "text-xs px-3 py-1.5 gap-1.5",
+    lg: "text-sm px-4 py-2.5 gap-2",
+  };
 
   return (
-    <div
-      className={`inline-flex rounded-full border border-borde bg-superficie ${grande ? "p-1.5" : "p-1"}`}
-      role="group"
-      aria-label="Tipo de compra"
-    >
-      {OPCIONES.map((opcion) => {
-        const activo = modo === opcion.id;
-        return (
-          <button
-            key={opcion.id}
-            type="button"
-            onClick={() => setModo(opcion.id)}
-            aria-pressed={activo}
-            className={`rounded-full font-medium transition-colors ${
-              grande ? "px-6 py-2.5 text-sm" : "px-3.5 py-1.5 text-xs"
-            } ${
-              activo
-                ? "bg-acento text-white"
-                : "text-tenue hover:text-foreground"
-            }`}
-          >
-            {opcion.nombre}
-          </button>
-        );
-      })}
+    <div className="inline-flex rounded-none border border-borde bg-superficie/80 p-1 backdrop-blur-sm">
+      <button
+        type="button"
+        onClick={() => setModo("minorista")}
+        className={`rounded-none font-bold uppercase tracking-wider transition-all duration-200 ${
+          tamanos[tamano]
+        } ${
+          modo === "minorista"
+            ? "bg-foreground text-background shadow-sm"
+            : "text-tenue hover:text-foreground"
+        }`}
+      >
+        Minorista
+      </button>
+      <button
+        type="button"
+        onClick={() => setModo("mayorista")}
+        className={`rounded-none font-bold uppercase tracking-wider transition-all duration-200 ${
+          tamanos[tamano]
+        } ${
+          modo === "mayorista"
+            ? "bg-acento text-black shadow-sm"
+            : "text-tenue hover:text-foreground"
+        }`}
+      >
+        Mayorista
+      </button>
     </div>
   );
 }

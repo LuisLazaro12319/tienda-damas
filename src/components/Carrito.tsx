@@ -32,7 +32,7 @@ export function Carrito() {
         <p className="text-tenue">Todavía no agregaste ninguna prenda.</p>
         <Link
           href="/productos"
-          className="mt-6 inline-flex rounded-full bg-acento px-7 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+          className="mt-6 inline-flex rounded-none bg-acento px-7 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
         >
           Ver productos
         </Link>
@@ -83,7 +83,7 @@ export function Carrito() {
               </p>
 
               <div className="mt-auto flex items-center gap-3 pt-2">
-                <div className="inline-flex items-center rounded-lg border border-borde">
+                <div className="inline-flex items-center rounded-none border border-borde">
                   <button
                     type="button"
                     onClick={() => cambiarCantidad(i, linea.cantidad - 1)}
@@ -140,7 +140,7 @@ export function Carrito() {
           target="_blank"
           rel="noopener noreferrer"
           aria-disabled={!cumpleMinimo}
-          className={`mt-5 flex items-center justify-center gap-2.5 rounded-full px-7 py-4 text-sm font-semibold transition-opacity ${
+          className={`mt-5 flex items-center justify-center gap-2.5 rounded-none px-7 py-4 text-sm font-semibold transition-opacity ${
             cumpleMinimo
               ? "bg-[#25D366] text-black hover:opacity-90"
               : "pointer-events-none bg-borde text-tenue"

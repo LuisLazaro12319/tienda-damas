@@ -88,7 +88,7 @@ function BotonFiltro({
       type="button"
       onClick={onClick}
       aria-pressed={activo}
-      className={`rounded-full border px-4 py-1.5 text-sm transition-colors ${
+      className={`rounded-none border px-4 py-1.5 text-sm transition-colors ${
         activo
           ? "border-acento bg-acento text-white"
           : "border-borde text-tenue hover:border-tenue hover:text-foreground"
