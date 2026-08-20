@@ -67,7 +67,7 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "try{var r=document.documentElement;var t=localStorage.getItem('tienda.tema');if(t==='dark')r.setAttribute('data-theme','dark');var a=localStorage.getItem('tienda.acento');if(a){r.style.setProperty('--acento',a);var n=parseInt(a.slice(1),16),R=Math.round((n>>16&255)*0.85),G=Math.round((n>>8&255)*0.85),B=Math.round((n&255)*0.85);r.style.setProperty('--acento-fuerte','#'+[R,G,B].map(function(x){return('0'+x.toString(16)).slice(-2)}).join(''));}}catch(e){}",
+              "try{var r=document.documentElement;var t=localStorage.getItem('tiendadamas.tema');if(t==='dark')r.setAttribute('data-theme','dark');var a=localStorage.getItem('tiendadamas.acento');if(a){r.style.setProperty('--acento',a);var n=parseInt(a.slice(1),16),R=Math.round((n>>16&255)*0.85),G=Math.round((n>>8&255)*0.85),B=Math.round((n&255)*0.85);r.style.setProperty('--acento-fuerte','#'+[R,G,B].map(function(x){return('0'+x.toString(16)).slice(-2)}).join(''));}}catch(e){}",
           }}
         />
         <TiendaProvider>

@@ -12,8 +12,8 @@ import { getProducto } from "@/data/productos";
 import { MINIMO_MAYORISTA } from "@/lib/config";
 import type { ItemCarrito, Modo, Producto } from "@/lib/types";
 
-const CLAVE_CARRITO = "tienda.carrito";
-const CLAVE_MODO = "tienda.modo";
+const CLAVE_CARRITO = "tiendadamas.carrito";
+const CLAVE_MODO = "tiendadamas.modo";
 
 type LineaCarrito = ItemCarrito & {
   producto: Producto;
